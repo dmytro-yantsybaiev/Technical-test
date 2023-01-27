@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C128A562981D1E200666538 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C128A542981D1E200666538 /* QuoteCell.swift */; };
+		0C128A572981D1E200666538 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C128A552981D1E200666538 /* QuoteCell.xib */; };
+		0C6715CE29833C490056E6EB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6715CD29833C490056E6EB /* AppConstants.swift */; };
+		0CF567F92982627D003A0CCF /* TypeIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */; };
+		0CF567FB2982635A003A0CCF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567FA2982635A003A0CCF /* String+Extension.swift */; };
+		0CF567FD29826382003A0CCF /* URLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */; };
+		0CF5680129826E10003A0CCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF5680029826E10003A0CCF /* UIView+Extension.swift */; };
 		1AA3C897263AA2030041430A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C896263AA2030041430A /* AppDelegate.swift */; };
 		1AA3C89B263AA2030041430A /* QuotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C89A263AA2030041430A /* QuotesListViewController.swift */; };
 		1AA3C8A0263AA2040041430A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA3C89F263AA2040041430A /* Assets.xcassets */; };
@@ -18,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C128A542981D1E200666538 /* QuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
+		0C128A552981D1E200666538 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
+		0C6715CD29833C490056E6EB /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIdentifiable.swift; sourceTree = "<group>"; };
+		0CF567FA2982635A003A0CCF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extension.swift"; sourceTree = "<group>"; };
+		0CF5680029826E10003A0CCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1AA3C893263AA2030041430A /* Technical-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Technical-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA3C896263AA2030041430A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AA3C89A263AA2030041430A /* QuotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesListViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +55,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C6715CC29833C230056E6EB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0C6715CD29833C490056E6EB /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		0CF567F529826245003A0CCF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C6715CC29833C230056E6EB /* Constants */,
+				0CF567F729826260003A0CCF /* Protocols */,
+				0CF567F629826259003A0CCF /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0CF567F629826259003A0CCF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0CF567FA2982635A003A0CCF /* String+Extension.swift */,
+				0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */,
+				0CF5680029826E10003A0CCF /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0CF567F729826260003A0CCF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		1AA3C88A263AA2030041430A = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +110,7 @@
 		1AA3C895263AA2030041430A /* Technical-test */ = {
 			isa = PBXGroup;
 			children = (
+				0CF567F529826245003A0CCF /* Common */,
 				1AA3C8B0263AA8220041430A /* Manager */,
 				1AA3C8AC263AA2D90041430A /* Model */,
 				1AA3C8AB263AA2D10041430A /* View */,
@@ -76,6 +127,8 @@
 			children = (
 				1AA3C89A263AA2030041430A /* QuotesListViewController.swift */,
 				1AA3C8B5263AB26C0041430A /* QuoteDetailsViewController.swift */,
+				0C128A542981D1E200666538 /* QuoteCell.swift */,
+				0C128A552981D1E200666538 /* QuoteCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C128A572981D1E200666538 /* QuoteCell.xib in Resources */,
 				1AA3C8A3263AA2040041430A /* LaunchScreen.storyboard in Resources */,
 				1AA3C8A0263AA2040041430A /* Assets.xcassets in Resources */,
 			);
@@ -166,10 +220,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF5680129826E10003A0CCF /* UIView+Extension.swift in Sources */,
 				1AA3C8B6263AB26C0041430A /* QuoteDetailsViewController.swift in Sources */,
+				0CF567FB2982635A003A0CCF /* String+Extension.swift in Sources */,
 				1AA3C89B263AA2030041430A /* QuotesListViewController.swift in Sources */,
 				1AA3C8B2263AA8360041430A /* DataManager.swift in Sources */,
+				0CF567F92982627D003A0CCF /* TypeIdentifiable.swift in Sources */,
 				1AA3C8BA263AB2980041430A /* Quote.swift in Sources */,
+				0C6715CE29833C490056E6EB /* AppConstants.swift in Sources */,
+				0CF567FD29826382003A0CCF /* URLResponse+Extension.swift in Sources */,
+				0C128A562981D1E200666538 /* QuoteCell.swift in Sources */,
 				1AA3C897263AA2030041430A /* AppDelegate.swift in Sources */,
 				1AC78CBF263C6686004D4F8F /* Market.swift in Sources */,
 			);
