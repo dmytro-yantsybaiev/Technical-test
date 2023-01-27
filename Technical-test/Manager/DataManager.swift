@@ -21,7 +21,6 @@ class DataManager {
 
         guard 200...299 ~= response.code else { throw "Bad Internet connection" }
 
-        let result = try JSONDecoder().decode([Quote].self, from: data)
-        return result
+        return try JSONDecoder().decode([Quote].self, from: data)
     }
 }

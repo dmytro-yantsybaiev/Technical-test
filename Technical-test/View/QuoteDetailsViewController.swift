@@ -18,7 +18,7 @@ class QuoteDetailsViewController: UIViewController {
     let readableLastChangePercentLabel = UILabel()
     let favoriteButton = UIButton()
 
-    init(quote: Quote) {
+    init(quote: Quote?) {
         super.init(nibName: nil, bundle: nil)
         self.quote = quote
     }
@@ -60,7 +60,7 @@ class QuoteDetailsViewController: UIViewController {
         readableLastChangePercentLabel.layer.borderColor = UIColor.black.cgColor
         readableLastChangePercentLabel.font = .systemFont(ofSize: 30)
 
-        favoriteButton.setTitle("Add to favorites", for: .normal)
+        setFavoriteButtonTitle()
         favoriteButton.layer.cornerRadius = 6
         favoriteButton.layer.masksToBounds = true
         favoriteButton.layer.borderWidth = 3
@@ -114,30 +114,29 @@ class QuoteDetailsViewController: UIViewController {
 
             favoriteButton.topAnchor.constraint(equalTo: readableLastChangePercentLabel.bottomAnchor, constant: 30),
             favoriteButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            favoriteButton.widthAnchor.constraint(equalToConstant: 150),
+            favoriteButton.widthAnchor.constraint(equalToConstant: favoriteButton.intrinsicContentSize.width + 20),
             favoriteButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
 
     @objc func didPressFavoriteButton(_ sender:UIButton!) {
-
-        guard let quote = quote,
-              let myMarket = quote.myMarket else {
-            return
+        if isQuoteFavorite() {
+            quote?.myMarket?.favoriteQuotesNames.remove(quote?.name)
+        } else {
+            quote?.myMarket?.favoriteQuotesNames.insert(quote?.name)
         }
-
-        setFavorite(quote, to: myMarket)
         navigationController?.popViewController(animated: true)
     }
 
-    private func setFavorite(_ quote: Quote, to market: Market) {
-
-        guard let quoteName = quote.name else { return }
-
-        if market.favoriteQuotesNames.contains(quoteName) {
-            market.favoriteQuotesNames.remove(quoteName)
+    private func setFavoriteButtonTitle() {
+        if isQuoteFavorite() {
+            favoriteButton.setTitle("Remove from favorites", for: .normal)
         } else {
-            market.favoriteQuotesNames.insert(quoteName)
+            favoriteButton.setTitle("Add to favorites", for: .normal)
         }
+    }
+
+    private func isQuoteFavorite() -> Bool {
+        quote?.myMarket?.favoriteQuotesNames.contains(quote?.name) ?? false
     }
 }

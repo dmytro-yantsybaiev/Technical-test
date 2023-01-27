@@ -11,5 +11,5 @@ class Market {
 
     let marketName: String = "SMI"
     var quotes: [Quote]? = []
-    var favoriteQuotesNames: Set<String> = []
+    var favoriteQuotesNames: Set<String?> = []
 }

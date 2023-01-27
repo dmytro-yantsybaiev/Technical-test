@@ -8,6 +8,7 @@
 struct AppConstants {
 
     struct ImageNames {
+
         static let favorite = "favorite"
         static let noFavorite = "no-favorite"
     }

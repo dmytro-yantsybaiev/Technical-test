@@ -15,43 +15,31 @@ class QuoteCell: UITableViewCell, TypeIdentifiable {
     @IBOutlet weak var readableLastChangePercentLabel: UILabel!
     @IBOutlet weak var favoriteImage: UIImageView!
 
-    private var quote: Quote?
+    var quote: Quote? {
+        didSet {
+            update()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    func configure(with quote: Quote) {
-        self.quote = quote
-        update()
-    }
-
-    func getQuote() -> Quote? {
-        quote
-    }
-
     private func update() {
-        guard let quote else { return }
-        updateLabels(with: quote)
-        updateFavoreiteState(with: quote)
+        updateLabels()
+        updateFavoriteState()
     }
 
-    private func updateLabels(with quote: Quote) {
-        nameLabel.text = quote.name
-        lastLabel.text = quote.last
-        currencyLabel.text = quote.currency
-        readableLastChangePercentLabel.text = quote.readableLastChangePercent
-        readableLastChangePercentLabel.textColor = quote.percentColor
+    private func updateLabels() {
+        nameLabel.text = quote?.name
+        lastLabel.text = quote?.last
+        currencyLabel.text = quote?.currency
+        readableLastChangePercentLabel.text = quote?.readableLastChangePercent
+        readableLastChangePercentLabel.textColor = quote?.percentColor
     }
 
-    private func updateFavoreiteState(with quote: Quote) {
-
-        guard let myMarket = quote.myMarket,
-              let quoteName = quote.name else {
-            return
-        }
-
-        if myMarket.favoriteQuotesNames.contains(quoteName) {
+    private func updateFavoriteState() {
+        if quote?.myMarket?.favoriteQuotesNames.contains(quote?.name) ?? false {
             favoriteImage.image = UIImage(named: AppConstants.ImageNames.favorite)
         } else {
             favoriteImage.image = UIImage(named: AppConstants.ImageNames.noFavorite)

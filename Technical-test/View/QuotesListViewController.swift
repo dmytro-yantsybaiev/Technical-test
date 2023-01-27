@@ -57,49 +57,44 @@ class QuotesListViewController: UIViewController {
     }
 }
 
-extension QuotesListViewController: UITableViewDelegate, UITableViewDataSource {
+extension QuotesListViewController: UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
 
-        guard let market = market,
-              let quotes = market.quotes else {
-            return 0
-        }
-
-        return quotes.count
+        market?.quotes?.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(
             withIdentifier: QuoteCell.typeName,
             for: indexPath
         )
 
-        guard let cell = cell as? QuoteCell,
-              let market = market,
-              let quotes = market.quotes else {
-            return cell
-        }
+        guard let cell = cell as? QuoteCell else { return cell }
 
-        var quote = quotes[indexPath.row]
-        quote.myMarket = market
-        cell.configure(with: quote)
+        var quote = market?.quotes?[indexPath.row]
+        quote?.myMarket = market
+        cell.quote = quote
 
         return cell
     }
+}
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension QuotesListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
 
         tableView.deselectRow(at: indexPath, animated: true)
 
-        guard let cell = tableView.cellForRow(at: indexPath) as? QuoteCell,
-              let quote = cell.getQuote() else {
-            return
-        }
+        guard let cell = tableView.cellForRow(
+            at: indexPath) as? QuoteCell else { return }
 
         navigationController?.pushViewController(
-            QuoteDetailsViewController(quote: quote),
+            QuoteDetailsViewController(quote: cell.quote),
             animated: true
         )
     }
