@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuoteCell: UITableViewCell, TypeIdentifiable {
+final class QuoteCell: UITableViewCell, TypeIdentifiable {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastLabel: UILabel!

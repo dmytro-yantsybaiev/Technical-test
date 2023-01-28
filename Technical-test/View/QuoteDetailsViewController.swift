@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuoteDetailsViewController: UIViewController {
+final class QuoteDetailsViewController: UIViewController {
 
     private var quote: Quote? = nil
 

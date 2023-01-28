@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Combine
 
-class QuotesListViewController: UIViewController {
+final class QuotesListViewController: UIViewController {
 
-    private let dataManager: DataManager = DataManager()
-    private var market: Market? = nil
     private var tableView = UITableView()
+
+    private var market: Market?
+    private var cancellable = Set<AnyCancellable>()
+    private let fetchQuotesSubject = CurrentValueSubject<Void, Never>(Void())
+    private let viewModel = QuotesListViewModel()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,7 +25,7 @@ class QuotesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        fetchQuotes()
+        bind()
     }
 
     private func configure() {
@@ -29,6 +33,16 @@ class QuotesListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         configureTableView()
+    }
+
+    private func bind() {
+        let input = QuotesListViewModel.Input(fetchQuotes: fetchQuotesSubject)
+        let output = viewModel.transform(input: input)
+
+        output.quotes.sink { result in
+            self.processQuotes(result)
+        }
+        .store(in: &cancellable)
     }
 
     private func configureTableView() {
@@ -42,17 +56,15 @@ class QuotesListViewController: UIViewController {
         )
     }
 
-    private func fetchQuotes() {
+    private func processQuotes(_ result: Result<[Quote], Error>) {
+        guard case .success(let quotes) = result else {
+            return
+        }
+
         Task {
-            do {
-                let quotes = try await dataManager.fetchQuotes()
-                let market = Market()
-                market.quotes = quotes
-                self.market = market
-                tableView.reloadData()
-            } catch {
-                print(error)
-            }
+            market = Market()
+            market?.quotes = quotes
+            tableView.reloadData()
         }
     }
 }
@@ -73,7 +85,9 @@ extension QuotesListViewController: UITableViewDataSource {
             for: indexPath
         )
 
-        guard let cell = cell as? QuoteCell else { return cell }
+        guard let cell = cell as? QuoteCell else {
+            return cell
+        }
 
         var quote = market?.quotes?[indexPath.row]
         quote?.myMarket = market
@@ -89,9 +103,11 @@ extension QuotesListViewController: UITableViewDelegate {
                    didSelectRowAt indexPath: IndexPath) {
 
         tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
 
-        guard let cell = tableView.cellForRow(
-            at: indexPath) as? QuoteCell else { return }
+        guard let cell = cell as? QuoteCell else {
+            return
+        }
 
         navigationController?.pushViewController(
             QuoteDetailsViewController(quote: cell.quote),

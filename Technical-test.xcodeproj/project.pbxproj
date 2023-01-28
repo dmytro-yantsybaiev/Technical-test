@@ -10,8 +10,12 @@
 		0C128A562981D1E200666538 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C128A542981D1E200666538 /* QuoteCell.swift */; };
 		0C128A572981D1E200666538 /* QuoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C128A552981D1E200666538 /* QuoteCell.xib */; };
 		0C6715CE29833C490056E6EB /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6715CD29833C490056E6EB /* AppConstants.swift */; };
+		0CCF41C329843C1700014495 /* QuotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF41C229843C1700014495 /* QuotesListViewModel.swift */; };
+		0CCF41C529845CE400014495 /* ResultHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF41C429845CE400014495 /* ResultHolder.swift */; };
+		0CCF41C72984707600014495 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF41C62984707600014495 /* NetworkError.swift */; };
+		0CCF41C92984832E00014495 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCF41C82984832E00014495 /* Publisher+Extension.swift */; };
+		0CE062C72985D1EF009AE172 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE062C62985D1EF009AE172 /* ViewModelType.swift */; };
 		0CF567F92982627D003A0CCF /* TypeIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */; };
-		0CF567FB2982635A003A0CCF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567FA2982635A003A0CCF /* String+Extension.swift */; };
 		0CF567FD29826382003A0CCF /* URLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */; };
 		0CF5680129826E10003A0CCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF5680029826E10003A0CCF /* UIView+Extension.swift */; };
 		1AA3C897263AA2030041430A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3C896263AA2030041430A /* AppDelegate.swift */; };
@@ -28,8 +32,12 @@
 		0C128A542981D1E200666538 /* QuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
 		0C128A552981D1E200666538 /* QuoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuoteCell.xib; sourceTree = "<group>"; };
 		0C6715CD29833C490056E6EB /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		0CCF41C229843C1700014495 /* QuotesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesListViewModel.swift; sourceTree = "<group>"; };
+		0CCF41C429845CE400014495 /* ResultHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHolder.swift; sourceTree = "<group>"; };
+		0CCF41C62984707600014495 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		0CCF41C82984832E00014495 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
+		0CE062C62985D1EF009AE172 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIdentifiable.swift; sourceTree = "<group>"; };
-		0CF567FA2982635A003A0CCF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extension.swift"; sourceTree = "<group>"; };
 		0CF5680029826E10003A0CCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1AA3C893263AA2030041430A /* Technical-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Technical-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +71,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		0CCF41C129843BDA00014495 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0CCF41C229843C1700014495 /* QuotesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0CF567F529826245003A0CCF /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,9 +92,9 @@
 		0CF567F629826259003A0CCF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0CF567FA2982635A003A0CCF /* String+Extension.swift */,
 				0CF567FC29826382003A0CCF /* URLResponse+Extension.swift */,
 				0CF5680029826E10003A0CCF /* UIView+Extension.swift */,
+				0CCF41C82984832E00014495 /* Publisher+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -87,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				0CF567F82982627D003A0CCF /* TypeIdentifiable.swift */,
+				0CE062C62985D1EF009AE172 /* ViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -114,6 +131,7 @@
 				1AA3C8B0263AA8220041430A /* Manager */,
 				1AA3C8AC263AA2D90041430A /* Model */,
 				1AA3C8AB263AA2D10041430A /* View */,
+				0CCF41C129843BDA00014495 /* ViewModel */,
 				1AA3C896263AA2030041430A /* AppDelegate.swift */,
 				1AA3C89F263AA2040041430A /* Assets.xcassets */,
 				1AA3C8A1263AA2040041430A /* LaunchScreen.storyboard */,
@@ -138,6 +156,8 @@
 			children = (
 				1AA3C8B9263AB2980041430A /* Quote.swift */,
 				1AC78CBE263C6686004D4F8F /* Market.swift */,
+				0CCF41C429845CE400014495 /* ResultHolder.swift */,
+				0CCF41C62984707600014495 /* NetworkError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,13 +242,17 @@
 			files = (
 				0CF5680129826E10003A0CCF /* UIView+Extension.swift in Sources */,
 				1AA3C8B6263AB26C0041430A /* QuoteDetailsViewController.swift in Sources */,
-				0CF567FB2982635A003A0CCF /* String+Extension.swift in Sources */,
+				0CCF41C529845CE400014495 /* ResultHolder.swift in Sources */,
 				1AA3C89B263AA2030041430A /* QuotesListViewController.swift in Sources */,
+				0CCF41C92984832E00014495 /* Publisher+Extension.swift in Sources */,
 				1AA3C8B2263AA8360041430A /* DataManager.swift in Sources */,
 				0CF567F92982627D003A0CCF /* TypeIdentifiable.swift in Sources */,
 				1AA3C8BA263AB2980041430A /* Quote.swift in Sources */,
+				0CCF41C329843C1700014495 /* QuotesListViewModel.swift in Sources */,
+				0CCF41C72984707600014495 /* NetworkError.swift in Sources */,
 				0C6715CE29833C490056E6EB /* AppConstants.swift in Sources */,
 				0CF567FD29826382003A0CCF /* URLResponse+Extension.swift in Sources */,
+				0CE062C72985D1EF009AE172 /* ViewModelType.swift in Sources */,
 				0C128A562981D1E200666538 /* QuoteCell.swift in Sources */,
 				1AA3C897263AA2030041430A /* AppDelegate.swift in Sources */,
 				1AC78CBF263C6686004D4F8F /* Market.swift in Sources */,
