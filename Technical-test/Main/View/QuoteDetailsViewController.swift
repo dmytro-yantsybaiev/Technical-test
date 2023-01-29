@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class QuoteDetailsViewController: UIViewController {
+final class QuoteDetailsViewController: BaseViewController {
 
     private var quote: Quote? = nil
 
@@ -125,6 +125,7 @@ final class QuoteDetailsViewController: UIViewController {
         } else {
             quote?.myMarket?.favoriteQuotesNames.insert(quote?.name)
         }
+        Storage.shared.market = quote?.myMarket
         navigationController?.popViewController(animated: true)
     }
 

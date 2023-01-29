@@ -11,20 +11,19 @@ import Combine
 final class QuotesListViewModel: ViewModelType {
 
     struct Input {
-        let fetchQuotes: CurrentValueSubject<Void, Never>
+        let fetchQuotes: PassthroughSubject<Void, Never>
     }
 
     struct Output {
         let quotes: AnyPublisher<[Quote], Error>
     }
 
-    private let dataManager: DataManager = DataManager()
+    private let dataManager: APIClient = APIClient()
 
     func transform(input: Input) -> Output {
 
         let quotes = input.fetchQuotes
-            .print("fetchQuotes")
-            .flatMap { 
+            .flatMap {
                 self.dataManager.fetchQuotes()
             }
             .eraseToAnyPublisher()

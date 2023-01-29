@@ -21,10 +21,6 @@ final class QuoteCell: UITableViewCell, TypeIdentifiable {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     private func update() {
         updateLabels()
         updateFavoriteState()
@@ -35,14 +31,14 @@ final class QuoteCell: UITableViewCell, TypeIdentifiable {
         lastLabel.text = quote?.last
         currencyLabel.text = quote?.currency
         readableLastChangePercentLabel.text = quote?.readableLastChangePercent
-        readableLastChangePercentLabel.textColor = quote?.percentColor
+        readableLastChangePercentLabel.textColor = quote?.lastChangeColor
     }
 
     private func updateFavoriteState() {
         if quote?.myMarket?.favoriteQuotesNames.contains(quote?.name) ?? false {
-            favoriteImage.image = UIImage(named: AppConstants.ImageNames.favorite)
+            favoriteImage.image = UIImage(named: Constants.ImageNames.favorite)
         } else {
-            favoriteImage.image = UIImage(named: AppConstants.ImageNames.noFavorite)
+            favoriteImage.image = UIImage(named: Constants.ImageNames.noFavorite)
         }
     }
 }

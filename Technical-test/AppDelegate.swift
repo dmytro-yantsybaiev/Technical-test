@@ -19,17 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc: QuotesListViewController = QuotesListViewController()
         let nc: UINavigationController = UINavigationController(rootViewController: vc)
 
-        configureNavigationBar()
-
         self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()
         
         return true
-    }
-
-    private func configureNavigationBar() {
-        let navigationBar = UINavigationBar.appearance()
-        navigationBar.backgroundColor = .systemBackground
-        navigationBar.isTranslucent = true
     }
 }

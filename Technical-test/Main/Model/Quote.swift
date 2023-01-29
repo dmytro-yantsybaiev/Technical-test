@@ -29,7 +29,7 @@ struct Quote: Codable {
 
 extension Quote {
 
-    var percentColor: UIColor {
+    var lastChangeColor: UIColor {
         switch variationColor {
         case "red": return .red
         case "green": return .green

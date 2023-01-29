@@ -7,14 +7,14 @@
 
 import UIKit
 
-public protocol TypeIdentifiable {
+protocol TypeIdentifiable {
 
     static var typeName: String { get }
     static var nibName: String { get }
     static var nib: UINib { get }
 }
 
-public extension TypeIdentifiable {
+extension TypeIdentifiable {
 
     static var typeName: String {
         String(describing: self)

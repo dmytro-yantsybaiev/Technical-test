@@ -8,13 +8,13 @@
 import UIKit
 import Combine
 
-final class QuotesListViewController: UIViewController {
+final class QuotesListViewController: BaseViewController {
 
     private var tableView = UITableView()
 
     private var market: Market?
     private var cancellable = Set<AnyCancellable>()
-    private let fetchQuotesSubject = CurrentValueSubject<Void, Never>(Void())
+    private let fetchQuotesSubject = PassthroughSubject<Void, Never>()
     private let viewModel = QuotesListViewModel()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +26,7 @@ final class QuotesListViewController: UIViewController {
         super.viewDidLoad()
         configure()
         bind()
+        loadMarket()
     }
 
     private func configure() {
@@ -56,19 +57,37 @@ final class QuotesListViewController: UIViewController {
         )
     }
 
-    private func processQuotes(_ result: Result<[Quote], Error>) {
-        guard case .success(let quotes) = result else {
-            return
-        }
-
-        Task {
+    private func loadMarket() {
+        if let market = Storage.shared.market {
+            self.market = market
+        } else {
             market = Market()
-            market?.quotes = quotes
-            tableView.reloadData()
+        }
+        fetchQuotesSubject.send(Void())
+    }
+
+    private func processQuotes(_ result: Result<[Quote], Error>) {
+        switch result {
+        case .success(let quotes):
+            Task {
+                market?.quotes = quotes
+                Storage.shared.market = market
+                tableView.reloadData()
+            }
+        case .failure(let error):
+            Task {
+                let alert = UIAlertController(
+                    title: "Error",
+                    message: error.localizedDescription,
+                    preferredStyle: .alert
+                )
+                presentAlert(alert: alert, needCloseWhenTapOutside: true)
+            }
         }
     }
 }
 
+// MARK: - UITableViewDataSource
 extension QuotesListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView,
@@ -97,6 +116,7 @@ extension QuotesListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension QuotesListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView,
