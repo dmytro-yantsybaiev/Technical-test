@@ -18,13 +18,13 @@ final class QuotesListViewModel: ViewModelType {
         let quotes: AnyPublisher<[Quote], Error>
     }
 
-    private let dataManager: APIClient = APIClient()
+    private let apiClient: APIClient = APIClient()
 
     func transform(input: Input) -> Output {
 
         let quotes = input.fetchQuotes
             .flatMap {
-                self.dataManager.fetchQuotes()
+                self.apiClient.fetchQuotes()
             }
             .eraseToAnyPublisher()
 
