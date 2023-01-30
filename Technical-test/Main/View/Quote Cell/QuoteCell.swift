@@ -1,0 +1,44 @@
+//
+//  QuoteCell.swift
+//  Technical-test
+//
+//  Created by Dmytro Yantsybaiev on 25.01.2023.
+//
+
+import UIKit
+
+final class QuoteCell: UITableViewCell, TypeIdentifiable {
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lastLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var readableLastChangePercentLabel: UILabel!
+    @IBOutlet weak var favoriteImage: UIImageView!
+
+    var quote: Quote? {
+        didSet {
+            update()
+        }
+    }
+
+    private func update() {
+        updateLabels()
+        updateFavoriteState()
+    }
+
+    private func updateLabels() {
+        nameLabel.text = quote?.name
+        lastLabel.text = quote?.last
+        currencyLabel.text = quote?.currency
+        readableLastChangePercentLabel.text = quote?.readableLastChangePercent
+        readableLastChangePercentLabel.textColor = quote?.lastChangeColor
+    }
+
+    private func updateFavoriteState() {
+        if quote?.myMarket?.favoriteQuotesNames.contains(quote?.name) ?? false {
+            favoriteImage.image = UIImage(named: Constants.ImageNames.favorite)
+        } else {
+            favoriteImage.image = UIImage(named: Constants.ImageNames.noFavorite)
+        }
+    }
+}
